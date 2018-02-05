@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.FormAssociadoController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+   <children>
+      <Button layoutX="210.0" layoutY="291.0" mnemonicParsing="false" onAction="#carregarForm" prefHeight="32.0" prefWidth="101.0" text="Proximo" />
+      <RadioButton fx:id="rbFuncionario" layoutX="208.0" layoutY="239.0" mnemonicParsing="false" text="Funcionario" />
+      <RadioButton fx:id="rbPescador" layoutX="208.0" layoutY="190.0" mnemonicParsing="false" text="Pescador" />
+      <Label layoutX="80.0" layoutY="75.0" text="Iniciar Cadastro Associado:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Separator layoutY="113.0" prefHeight="0.0" prefWidth="600.0" />
+      <Label layoutX="108.0" layoutY="139.0" prefHeight="20.0" prefWidth="432.0" text="Qual tipo de Associado voce deseja cadastrar?" />
+      <Button layoutX="313.0" layoutY="291.0" mnemonicParsing="false" onAction="#carregarForm" prefHeight="32.0" prefWidth="101.0" text="Voltar" />
+   </children>
+</AnchorPane>

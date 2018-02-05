@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane id="AnchorPane" fx:id="layout" prefHeight="646.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerFormAssociacao">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+    
+    
+    <children>
+        <Pane layoutX="2.0" layoutY="2.0" prefHeight="635.0" prefWidth="1099.0">
+            <children>
+                <Label layoutX="14.0" layoutY="54.0" prefHeight="25.0" prefWidth="220.0" text="Pesquisar pelo nome ou CNPJ." />
+                <TableView fx:id="tableAssociacoes" layoutX="7.0" layoutY="110.0" onKeyReleased="#navegarKey" prefHeight="354.0" prefWidth="1062.0">
+                    <columns>
+                        <TableColumn fx:id="idAssociacaoFX" prefWidth="75.0" styleClass="fonte" text="ID" />
+                        <TableColumn fx:id="nameFX" prefWidth="589.0" styleClass="fonte" text="Nome" />
+                        <TableColumn fx:id="enderecoFX" prefWidth="397.0" styleClass="fonte" text="Endereço" />
+                    </columns>
+                </TableView>
+                <TextField fx:id="txtBusca" layoutX="9.0" layoutY="78.0" onKeyReleased="#filtrarAssociacoes" prefHeight="25.0" prefWidth="547.0" />
+                <Label layoutX="224.0" layoutY="16.0" prefHeight="53.0" prefWidth="601.0" text="FILTAR ASSOCIAÇOES">
+                    <font>
+                        <Font name="FreeMono Bold" size="52.0" />
+                    </font>
+                </Label>
+                <Button layoutX="557.0" layoutY="78.0" mnemonicParsing="false" onAction="#novaAssociacao" prefHeight="25.0" prefWidth="86.0" text="Novo" />
+                <Button layoutX="644.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Editar" />
+                <Button layoutX="731.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Remover" />
+                <Button layoutX="818.0" layoutY="78.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="77.0" text="Fechar" />
+            <Button layoutX="944.0" layoutY="78.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="25.0" prefWidth="54.0" text="|&lt;&lt;" />
+            <Button layoutX="999.0" layoutY="78.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="25.0" prefWidth="47.0" text="|&lt;" />
+          
+            </children>
+        </Pane>
+      <Button layoutX="898.0" layoutY="80.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="25.0" prefWidth="47.0" text="&gt;|" />
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+</AnchorPane>
