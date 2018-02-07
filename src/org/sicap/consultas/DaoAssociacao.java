@@ -42,7 +42,13 @@ public class DaoAssociacao extends DaoGenerico<Associacao, Serializable> {
         }
     }
 
-    
+    public static void main(String[] args) {
+        List<Associacao> lista = new DaoAssociacao().listAssociations("");
+        System.out.println(lista);
+        for (Associacao a : lista) {
+            System.out.println("Name: " + a.getCNPJ());
+        }
+    }
 
     public List<Associacao_Sample> listaAssociacoesFX(String nome) {
 

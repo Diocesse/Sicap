@@ -35,6 +35,10 @@ public class DaoAdminAutenticacao extends DaoGenerico<Administrador, Serializabl
         return administrador;
     }
 
-   
+    public static void main(String[] args) {
+        Administrador adm = new DaoAdminAutenticacao().acessoRestritoAdmin("admin", "admin");
+        System.out.println("Login:" + adm.getUsuario() + " Senha:" + adm.getSenha());
+
+    }
 
 }

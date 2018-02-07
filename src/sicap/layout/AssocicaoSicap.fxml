@@ -10,37 +10,37 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.*?>
 
-<AnchorPane id="AnchorPane" fx:id="layout" prefHeight="566.0" prefWidth="683.0" styleClass="grad-repeat-1" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerSicap">
+<AnchorPane id="AnchorPane" fx:id="layout" blendMode="DARKEN" prefHeight="566.0" prefWidth="683.0" styleClass="border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerSicap">
    
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
     <children>
-      <Pane fx:id="pane" layoutX="191.0" layoutY="95.0" prefHeight="368.0" prefWidth="378.0" styleClass="grad-repeat-1">
+      <Pane fx:id="pane" layoutX="196.0" layoutY="36.0" prefHeight="346.0" prefWidth="378.0" styleClass="pane-menu">
          <children>
-            <Label layoutX="18.0" layoutY="191.0" text="Usuario:">
+            <Label layoutX="18.0" layoutY="191.0" styleClass="mensage" text="Usuario:">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label layoutX="28.0" layoutY="240.0" text="Senha:">
+            <Label layoutX="28.0" layoutY="240.0" styleClass="mensage" text="Senha:">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
             <TextField fx:id="txtUser" layoutX="92.0" layoutY="186.0" prefHeight="25.0" prefWidth="245.0" promptText="Usuario" styleClass="text-field-login" />
             <PasswordField fx:id="txtSenha" layoutX="92.0" layoutY="235.0" onKeyReleased="#loginTextfield" prefHeight="25.0" prefWidth="245.0" promptText="Senha" styleClass="text-field-login" />
-            <Button fx:id="btLogar" layoutX="102.0" layoutY="298.0" mnemonicParsing="false" onAction="#logar" prefHeight="25.0" prefWidth="107.0" text="Autorizar">
+            <Button fx:id="btLogar" layoutX="102.0" layoutY="278.0" mnemonicParsing="false" onAction="#logar" prefHeight="25.0" prefWidth="107.0" text="Autorizar">
                <styleClass>
                   <String fx:value="btn-cancel-menu" />
                   <String fx:value="border" />
                </styleClass></Button>
-            <Button fx:id="btCancelar" layoutX="210.0" layoutY="298.0" mnemonicParsing="false" onAction="#close" prefHeight="32.0" prefWidth="107.0" text="Cancelar">
+            <Button fx:id="btCancelar" layoutX="210.0" layoutY="278.0" mnemonicParsing="false" onAction="#close" prefHeight="32.0" prefWidth="107.0" text="Cancelar">
                <styleClass>
                   <String fx:value="btn-cancel-menu" />
                   <String fx:value="border" />
                </styleClass></Button>
-            <Pane layoutX="130.0" layoutY="13.0" prefHeight="134.0" prefWidth="147.0">
+            <Pane layoutX="130.0" layoutY="16.0" prefHeight="134.0" prefWidth="147.0">
                <children>
-                  <ImageView fx:id="imageAuto" fitHeight="99.0" fitWidth="88.0" layoutX="41.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageAuto" fitHeight="99.0" fitWidth="107.0" layoutX="22.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
                </children>
                <styleClass>
                   <String fx:value="pane-menu" />
@@ -52,23 +52,28 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="149.0" prefHeight="30.0" prefWidth="378.0" text="Autenticaçao.">
-               <font>
-                  <Font name="System Bold Italic" size="24.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
-      <Label layoutX="191.0" layoutY="14.0" prefHeight="85.0" prefWidth="378.0" text="SICAP">
+      <Label layoutX="40.0" layoutY="504.0" prefHeight="18.0" prefWidth="604.0" text="Autenticaçao do Funcionario...">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="410.0" prefHeight="85.0" prefWidth="303.0" text="SICAP">
          <font>
             <Font name="System Bold Italic" size="70.0" />
          </font>
       </Label>
-      <Label fx:id="txtOla" layoutX="263.0" layoutY="365.0" prefHeight="25.0" prefWidth="279.0">
+      <Label fx:id="txtOla" layoutX="263.0" layoutY="352.0" prefHeight="25.0" prefWidth="279.0">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
+      <ImageView fx:id="logo" fitHeight="116.0" fitWidth="147.0" layoutX="48.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Documentos/arquivos/Ouro%20do%20mar.jpg" />
+         </image>
+      </ImageView>
    </children>
    
    

@@ -29,6 +29,12 @@ public class DaoProfissao extends DaoGenerico<Profissao, Serializable> {
         return q.getResultList();
     }
 
-   
+    public static void main(String[] args) {
+        Collection<Profissao> list = new DaoProfissao().listProfessions();
+        for (Profissao profissao : list) {
+            System.out.println("" + profissao.getProfissao());
+        }
+
+    }
 
 }

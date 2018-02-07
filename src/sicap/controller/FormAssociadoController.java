@@ -82,16 +82,4 @@ public class FormAssociadoController implements Initializable {
         }
         ((Stage) rbFuncionario.getScene().getWindow()).close();
     }
-    
-    
-    @FXML
-    public void Cancelar(ActionEvent event) {
-
-        
-        ((Stage) rbFuncionario.getScene().getWindow()).close();
-    }
-    
-    
-    
-    
 }

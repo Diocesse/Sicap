@@ -24,7 +24,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -53,9 +52,6 @@ public class ViewPrincipalController implements Initializable {
     private ImageView imageBanner, imageLogo;
 
     @FXML
-    private VBox panelButton;
-
-    @FXML
     Label txtOla, txtOla1;
     @FXML
     private Circle circle;
@@ -70,19 +66,12 @@ public class ViewPrincipalController implements Initializable {
     @FXML
     private Hyperlink linkPagamento;
 
-    @FXML
-    private Pane panelInfo;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension tamTela = kit.getScreenSize();
         menuP.setPrefWidth(tamTela.getWidth());
-        panelButton.setPrefHeight(tamTela.height-150);
-        panelInfo.setPrefWidth(tamTela.width-190);
-        panelInfo.setPrefHeight(tamTela.height-150);
-        txtOla1.setPrefWidth(tamTela.width);
 
         carregarImageMenu();
         if (ControllerSicap.getF() != null) {
@@ -91,16 +80,9 @@ public class ViewPrincipalController implements Initializable {
             imageLogo.setImage(new Image(new ByteArrayInputStream(ControllerSicap.getF().getAssociacao().getLogo())));
 
         }
-        
-        if (ControllerSicap.getAdm() != null ){
-            txtOla.setText("Seja bem vindo: " + ControllerSicap.getAdm().getUsuario().toUpperCase());
-              txtOla1.setText("Criador do sistema sistema sicap.".toUpperCase());
-          
-        }
-        
 
     }
-    public static SicapAPMOM sicap = SicapAPMOM.instance();
+  public static SicapAPMOM sicap = SicapAPMOM.instance();
 
     @FXML
     public void carregarFormAssociacao(ActionEvent event) {
@@ -124,14 +106,8 @@ public class ViewPrincipalController implements Initializable {
     }
 
     @FXML
-    public void carregarFormAssociado2(ActionEvent event) {
-        sicap.carregarFormCargosProfissao("FormAssociado", "Iniciar cadastro do associado.", new Stage());
-
-    }
-
-    @FXML
     public void carregarFormAssociado(ActionEvent event) {
-        sicap.carregarFormCargosProfissao("FormAssociado", "Iniciar cadastro do associado.", new Stage());
+        sicap.carregarFormCargosProfissao("FormAssociado", "Formulario de cadastro dos Cargos", new Stage());
 
     }
 
@@ -169,7 +145,7 @@ public class ViewPrincipalController implements Initializable {
             ImageView img2 = new ImageView(image2);
             img2.fitHeightProperty().set(h);
             img2.fitWidthProperty().set(w);
-           // itemPagamento.setGraphic(img2);
+            itemPagamento.setGraphic(img2);
 
             imageBanner.setImage(new Image(getClass().getResourceAsStream("/sicap/image/pessoaM.gif")));
             imageBanner.fitHeightProperty().set(108);

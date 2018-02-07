@@ -12,17 +12,17 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="992.0" styleClass="grad-repeat-1" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ViewPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="614.0" prefWidth="1211.0" styleClass="border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ViewPrincipalController">
      <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
     
     <children>
-      <MenuBar fx:id="menuP" layoutY="1.0" prefHeight="66.0" prefWidth="973.0">
+      <MenuBar fx:id="menuP" layoutY="1.0" prefHeight="66.0" prefWidth="745.0">
         <menus>
           <Menu fx:id="itemCadastro" mnemonicParsing="false" styleClass="item" text="Cadastros">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#carregarFormAssociacao" text="Associaçao" />
+              <MenuItem mnemonicParsing="false" onAction="#carregarFormAssociacao" styleClass="item" text="Associaçao" />
                   <MenuItem mnemonicParsing="false" onAction="#carregarFormAssociado" text="Associado" />
                   <MenuItem mnemonicParsing="false" onAction="#carregarFormAssociacao" text="Profissao" />
                   <MenuItem mnemonicParsing="false" onAction="#carregarFormAssociacao" text="Cargo" />
@@ -56,13 +56,13 @@
             </Menu>
         </menus>
          <styleClass>
-            <String fx:value="grad-repeat-1" />
-            <String fx:value="border_style" />
+            <String fx:value="mensage" />
+            <String fx:value="mensage" />
          </styleClass>
       </MenuBar>
-      <Pane fx:id="panelInfo" layoutX="227.0" layoutY="74.0" prefHeight="403.0" prefWidth="745.0">
+      <Pane layoutX="249.0" layoutY="122.0" prefHeight="410.0" prefWidth="478.0">
          <children>
-            <Label fx:id="txtOla" layoutX="81.0" layoutY="13.0" prefHeight="32.0" prefWidth="438.0" styleClass="text-field-login" text="OLa:">
+            <Label fx:id="txtOla" layoutX="26.0" layoutY="42.0" prefHeight="32.0" prefWidth="438.0" styleClass="text-field-login" text="OLa:">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
                </font>
@@ -78,60 +78,35 @@
                   <Image url="@../../../../Documentos/AssociacaoOurodoMar/src/image/pessoaM.gif" />
                </image>
             </ImageView>
-            <Hyperlink layoutX="75.0" layoutY="42.0" onAction="#carregarArquivo" prefHeight="32.0" prefWidth="125.0" text="Trocar foto.">
+            <Hyperlink layoutX="67.0" layoutY="233.0" onAction="#carregarArquivo" prefHeight="32.0" prefWidth="125.0" text="Trocar foto.">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
-               <textFill>
-                  <RadialGradient centerX="0.6741573033707865" centerY="0.7403846153846154" cycleMethod="REFLECT" radius="0.5">
-                     <stops>
-                        <Stop color="#9e1a1a" />
-                        <Stop color="#170808" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </textFill>
             </Hyperlink>
             <ImageView fx:id="imageLogo" fitHeight="129.0" fitWidth="113.0" layoutX="286.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../Documentos/AssociacaoOurodoMar/src/image/pessoaM.gif" />
                </image>
             </ImageView>
-            <Label fx:id="txtOla1" layoutX="22.0" layoutY="310.0" prefHeight="47.0" prefWidth="711.0" text="Associacao">
-               <font>
-                  <Font name="FreeMono Bold" size="37.0" />
-               </font>
-               <textFill>
-                  <LinearGradient cycleMethod="REFLECT" endX="0.11538461538461539" endY="1.0" startX="0.3125" startY="0.6009615384615384">
-                     <stops>
-                        <Stop color="#827d49" />
-                        <Stop color="BLACK" offset="0.04" />
-                        <Stop color="#18b5b2" offset="0.7407407407407409" />
-                        <Stop color="#b5aa18" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
          </children>
          <styleClass>
-            <String fx:value="grad-repeat-1" />
+            <String fx:value="pane-menu" />
             <String fx:value="border" />
-            <String fx:value="grad-repeat-1" />
          </styleClass>
       </Pane>
-      <VBox fx:id="panelButton" layoutX="7.0" layoutY="73.0" prefHeight="403.0" prefWidth="216.0">
+      <VBox layoutX="19.0" layoutY="123.0" prefHeight="410.0" prefWidth="226.0">
          <styleClass>
             <String fx:value="border" />
-            <String fx:value="grad-repeat-1" />
+            <String fx:value="pane-menu" />
          </styleClass>
          <children>
-            <Hyperlink fx:id="linkAssociado" lineSpacing="4.0" onAction="#carregarFormAssociado2" prefHeight="98.0" prefWidth="208.0" text=" Associado">
+            <Hyperlink fx:id="linkAssociado" lineSpacing="4.0" prefHeight="98.0" prefWidth="208.0" text=" Associado">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
                <styleClass>
                   <String fx:value="border" />
-                  <String fx:value="border_style" />
-                  <String fx:value="grad-repeat-1" />
+                  <String fx:value="pane-menu" />
                </styleClass>
                
                                     </Hyperlink>
@@ -141,8 +116,7 @@
                </font>
                <styleClass>
                   <String fx:value="border" />
-                  <String fx:value="border_style" />
-                  <String fx:value="grad-repeat-1" />
+                  <String fx:value="pane-menu" />
                </styleClass>
                
                                     </Hyperlink>
@@ -151,9 +125,8 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <styleClass>
+                  <String fx:value="pane-menu" />
                   <String fx:value="border" />
-                  <String fx:value="border_style" />
-                  <String fx:value="grad-repeat-1" />
                </styleClass>
             </Hyperlink>
             <Hyperlink fx:id="linkPagamento" lineSpacing="4.0" prefHeight="87.0" prefWidth="208.0" text="Pagamento">
@@ -161,14 +134,62 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <styleClass>
+                  <String fx:value="pane-menu" />
                   <String fx:value="border" />
-                  <String fx:value="border_style" />
-                  <String fx:value="grad-repeat-1" />
                </styleClass>
               
                   </Hyperlink>
          </children>
       </VBox>
+      <GridPane layoutX="732.0" layoutY="122.0" prefHeight="410.0" prefWidth="395.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.0" minWidth="10.0" prefWidth="283.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="112.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="96.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="284.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <styleClass>
+            <String fx:value="border" />
+            <String fx:value="pane-menu" />
+         </styleClass>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="86.0" prefWidth="283.0" text="Associados com pedencias." GridPane.rowIndex="1">
+               <styleClass>
+                  <String fx:value="border" />
+                  <String fx:value="pane-menu" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="94.0" prefWidth="283.0" text="Associados com pedencias." GridPane.rowIndex="2">
+               <styleClass>
+                  <String fx:value="border" />
+                  <String fx:value="pane-menu" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="86.0" prefWidth="283.0" text="Associados sem pedencias.">
+               <styleClass>
+                  <String fx:value="border" />
+                  <String fx:value="pane-menu" />
+               </styleClass>
+            </Button>
+         </children>
+      </GridPane>
+      <Label fx:id="txtOla1" layoutX="26.0" layoutY="68.0" prefHeight="47.0" prefWidth="990.0" text="Associacao">
+         <font>
+            <Font name="FreeMono Bold" size="37.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="0.4807692307692307">
+               <stops>
+                  <Stop color="#9e1a1a" />
+                  <Stop color="#a15e5e" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
    </children>
     
 </AnchorPane>
