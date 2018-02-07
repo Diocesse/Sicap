@@ -30,14 +30,6 @@ public class DaoCargo extends DaoGenerico<Cargo, Serializable> {
         return q.getResultList();
     }
 
-    public static void main(String[] args) {
-        Collection<Cargo> cargos = new DaoCargo().listaCargosPorNome("r");
-        for (Iterator<Cargo> iterator = cargos.iterator(); iterator.hasNext();) {
-            Cargo c = (Cargo) iterator.next();
-            System.out.println("" + c.getCargo());
-
-        }
-
-    }
+   
 
 }

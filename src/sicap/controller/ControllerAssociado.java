@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -31,6 +32,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -250,6 +252,50 @@ public class ControllerAssociado implements Initializable {
         }
 
     }
+    @FXML
+    public void formProfissao(ActionEvent event){
+        
+        DaoProfissao dp = new DaoProfissao();
+        TextInputDialog dialog = new TextInputDialog();
+      
+        dialog.setTitle("Form profissão");
+        dialog.setHeaderText("Qual é a profissão?");
+        dialog.setContentText("Digite aqui:");
+        Optional<String> result =   dialog.showAndWait();
+        if (result.isPresent()){
+            
+            Profissao p = new Profissao();
+            p.setProfissao(result.get());
+            dp.save(p);
+           // System.out.println("Venha"+ result.get());
+        }
+        
+       carregarProfissoes();
+    }
+    
+    @FXML
+    public void formCargo(ActionEvent event){
+        
+        DaoCargo dc = new DaoCargo();
+        TextInputDialog dialog = new TextInputDialog();
+      
+        dialog.setTitle("Novos Cargos");
+        dialog.setHeaderText("Qual é o Cargo?");
+        dialog.setContentText("Digite aqui:");
+        Optional<String> result =   dialog.showAndWait();
+        if (result.isPresent()){
+            
+            Cargo p = new Cargo();
+            p.setCargo(result.get());
+            dc.save(p);
+           // System.out.println("Venha"+ result.get());
+        }
+        
+       carregarCargos();
+    }
+    
+    
+    
 
     public void carregarProfissoes() {
         try {

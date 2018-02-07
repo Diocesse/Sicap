@@ -16,6 +16,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javax.persistence.Persistence;
 import org.sicap.consultas.DaoAssociacao;
@@ -51,7 +52,9 @@ public class SicapAPMOM extends Application {
             Toolkit kit = Toolkit.getDefaultToolkit();
             Dimension tamTela = kit.getScreenSize();
 
-            primaryStage.setScene(new Scene(root, tamTela.width / 2, tamTela.height / 2 + 200));
+            primaryStage.setScene(new Scene(root, tamTela.width, tamTela.height));
+         //   primaryStage.getIcons().add(new Image(this.getClass().getResource("/sicap/image/pessoaM.gif").toString()));
+
             primaryStage.show();
 
         } catch (Exception e) {

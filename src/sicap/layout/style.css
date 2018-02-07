@@ -5,12 +5,12 @@
 .mainFxmlClass {
 
 }.pane-menu-float{
-    -fx-background-color: linear-gradient(to right, rgb(125, 68, 144), rgb(159, 72, 115));
+    -fx-background-color: linear-gradient(to right, rgb(5, 6, 80), rgb(12, 97, 115));
     -fx-text-fill: white;
 }
 
 .pane-menu{
-    -fx-background-color: linear-gradient(to right, rgb(125, 68, 144), rgb(238, 132, 180), rgb(159, 72, 115));
+    -fx-background-color: linear-gradient(to right, rgb(20, 12, 34), rgb(13, 20, 180), rgb(34, 72, 34));
     -fx-background-radius:50;
     -fx-alignment: CENTER;
     -fx-text-fill: white;
@@ -34,9 +34,9 @@
 
 
 }.mensage{
-    
+
     -fx-text-fill: white;
-    
+
 
 }.border{
 
@@ -46,6 +46,7 @@
     -fx-font-size: 12pt;
     -fx-text-alignment: center;
     -fx-base: rgb(122, 145, 47);
+ 
 
 
 }.tem{
@@ -57,8 +58,19 @@
     -fx-border-color: blueviolet;
     -fx-border-radius:2pt;
 }.fonte{
-    
+
     -fx-font-size:13pt;
     -fx-font:monospace; 
     -fx-text-alignment: right;
+}.cor{
+      -fx-background-color: radial-gradient(focus-angle 291deg , focus-distance 59% , center 50% 50% , radius 55% , lawngreen, whitesmoke);
+}.cor2{
+    -fx-background-color:  linear-gradient ( to top,rgb(12,3,12), rgb(12,3,5));
+}.linear-grad-without-repeat{
+  -fx-background-color: radial-gradient(focus-angle 291deg , focus-distance 59% , center 50% 50% , radius 55% , lawngreen, whitesmoke);
+ 
+}.grad-repeat-1{
+     -fx-background-color: radial-gradient(focus-angle 45deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, yellow, blanchedalmond 75% , cyan);
+     -fx-underline: false;
+
 }

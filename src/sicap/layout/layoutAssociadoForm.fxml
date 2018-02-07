@@ -133,8 +133,8 @@
       <Label layoutX="21.0" layoutY="465.0" prefHeight="20.0" prefWidth="127.0" text="Associação:" />
       <Label layoutX="20.0" layoutY="409.0" prefHeight="20.0" prefWidth="127.0" text="Profissões:" />
       <ComboBox fx:id="profissaoBox" layoutX="15.0" layoutY="429.0" prefHeight="32.0" prefWidth="370.0" promptText="Selecione" />
-      <Button fx:id="btProf" layoutX="386.0" layoutY="428.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="65.0" text="Nova" />
-      <Button fx:id="btCarg" layoutX="757.0" layoutY="427.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="65.0" text="Novo" />
+      <Button fx:id="btProf" layoutX="386.0" layoutY="428.0" mnemonicParsing="false" onAction="#formProfissao" prefHeight="32.0" prefWidth="65.0" text="Nova" />
+      <Button fx:id="btCarg" layoutX="757.0" layoutY="427.0" mnemonicParsing="false" onAction="#formCargo" prefHeight="32.0" prefWidth="65.0" text="Novo" />
       <ComboBox fx:id="cargosBox" layoutX="453.0" layoutY="427.0" prefHeight="32.0" prefWidth="303.0" promptText="Selecione" />
       <Label fx:id="labelCargo" layoutX="457.0" layoutY="407.0" prefHeight="20.0" prefWidth="127.0" text="Cargos:" />
       <Label fx:id="txtMsg" layoutX="21.0" layoutY="547.0" prefHeight="15.0" prefWidth="593.0" text="Mensagem:" />

@@ -59,7 +59,8 @@ public class ControllerSicap implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             imageAuto.setImage(new Image(getClass().getResourceAsStream("/sicap/image/pessoaM.gif")));
-            logo.setImage(new Image(getClass().getResourceAsStream("/sicap/image/logo.jpg")));
+           //s logo.setImage(new Image(getClass().getResourceAsStream("/sicap/image/logo.jpg")));
+           
 
         } catch (Exception e) {
         }
@@ -73,9 +74,9 @@ public class ControllerSicap implements Initializable {
     public static Funcionario getF() {
         return f;
     }
-    private Administrador adm;
+    private static Administrador adm;
 
-    public Administrador getAdm() {
+    public static Administrador getAdm() {
         return adm;
     }
 
