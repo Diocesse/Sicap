@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.*?>
 
-<AnchorPane id="AnchorPane" fx:id="layout" blendMode="DARKEN" prefHeight="566.0" prefWidth="683.0" styleClass="border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerSicap">
+<AnchorPane id="AnchorPane" fx:id="layout" blendMode="DARKEN" prefHeight="566.0" prefWidth="683.0" styleClass="grad-repeat" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerSicap">
    
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
     <children>
-      <Pane fx:id="pane" layoutX="196.0" layoutY="36.0" prefHeight="346.0" prefWidth="378.0" styleClass="pane-menu">
+      <Pane fx:id="pane" layoutX="196.0" layoutY="36.0" prefHeight="346.0" prefWidth="378.0" styleClass="grad-repeat">
          <children>
             <Label layoutX="18.0" layoutY="191.0" styleClass="mensage" text="Usuario:">
                <font>
@@ -69,11 +69,6 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <ImageView fx:id="logo" fitHeight="116.0" fitWidth="147.0" layoutX="48.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../Documentos/arquivos/Ouro%20do%20mar.jpg" />
-         </image>
-      </ImageView>
    </children>
    
    

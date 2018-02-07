@@ -61,4 +61,6 @@
     -fx-font-size:13pt;
     -fx-font:monospace; 
     -fx-text-alignment: right;
+}.grad-repeat{
+   -fx-background-color: radial-gradient(focus-angle 45deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, grey, #a9a9a9 75% , #696969);
 }
