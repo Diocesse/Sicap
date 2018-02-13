@@ -9,134 +9,206 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="659.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerAssociado">
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="950.0" styleClass="grad-repeat" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerAssociado">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
     <children>
-        <Label fx:id="txtTexto" layoutX="9.0" layoutY="37.0" prefHeight="38.0" prefWidth="761.0" text="Ficha de Inscrição: ">
+        <Label fx:id="txtTexto" layoutX="8.0" layoutY="8.0" prefHeight="63.0" prefWidth="937.0" text="Ficha de Inscrição: ">
             <font>
                 <Font name="FreeMono Bold" size="34.0" />
             </font>
         </Label>
-      <TabPane fx:id="paneScroll" layoutX="3.0" layoutY="78.0" prefHeight="341.0" prefWidth="789.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="paneScroll" layoutX="3.0" layoutY="71.0" prefHeight="341.0" prefWidth="931.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Dados Pessoais:">
+          <Tab styleClass="colocar-borda" text="Dados Pessoais:">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="299.0" prefWidth="789.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="789.0">
                      <children>
-                        <Label layoutX="15.0" layoutY="45.0" prefHeight="20.0" prefWidth="180.0" text="Nome completo:*" />
-                        <TextField fx:id="txtNome" layoutX="12.0" layoutY="66.0" prefHeight="32.0" prefWidth="530.0" promptText="Informe o nome." />
-                        <ComboBox fx:id="sexosBox" layoutX="12.0" layoutY="125.0" prefHeight="32.0" prefWidth="360.0" promptText="Selecione o sexo" />
-                        <Label layoutX="16.0" layoutY="104.0" prefHeight="20.0" prefWidth="180.0" text="Sexo:*" />
-                        <Label layoutX="20.0" layoutY="165.0" prefHeight="20.0" prefWidth="164.0" text="Data Nascimento:*" />
-                        <DatePicker fx:id="txtDataNascimento" layoutX="14.0" layoutY="185.0" prefHeight="32.0" prefWidth="176.0" promptText="dd/MM/yyyy" />
-                        <DatePicker fx:id="txtMatricula" layoutX="191.0" layoutY="185.0" prefHeight="32.0" prefWidth="173.0" promptText="dd/MM/YYYy" />
-                        <Label layoutX="196.0" layoutY="165.0" prefHeight="20.0" prefWidth="158.0" text="Data Matricula:*" />
-                        <TextField fx:id="txtCPF" layoutX="15.0" layoutY="245.0" prefHeight="32.0" prefWidth="184.0" promptText="###.###.###-##" />
-                        <Label layoutX="18.0" layoutY="225.0" prefHeight="20.0" prefWidth="180.0" text="CPF:*" />
-                        <Label layoutX="203.0" layoutY="225.0" prefHeight="20.0" prefWidth="180.0" text="RG:*" />
-                        <TextField fx:id="txtRG" layoutX="200.0" layoutY="245.0" prefHeight="32.0" prefWidth="183.0" promptText="##.###.###-##" />
-                        <TextField fx:id="txtCIE" layoutX="384.0" layoutY="245.0" prefHeight="32.0" prefWidth="220.0" promptText="#.###.###.###-#" />
-                        <Label layoutX="387.0" layoutY="225.0" prefHeight="20.0" prefWidth="180.0" text="CIE:*" />
-                        <Label layoutX="608.0" layoutY="224.0" prefHeight="20.0" prefWidth="180.0" text="NIT:*" />
-                        <TextField fx:id="txtNIT" layoutX="605.0" layoutY="244.0" prefHeight="32.0" prefWidth="169.0" promptText="#.###.###.###-#" />
-                        <Label layoutX="13.0" layoutY="10.0" prefHeight="20.0" prefWidth="543.0" text="Todos os campos tem preenchimento obrigatorio.*" textFill="#e10b0b">
+                        <Label layoutX="20.0" layoutY="26.0" prefHeight="20.0" prefWidth="145.0" text="Nome completo:*" />
+                        <TextField fx:id="txtNome" layoutX="12.0" layoutY="48.0" onKeyReleased="#validarName" prefHeight="32.0" prefWidth="589.0" promptText="Informe o nome." styleClass="text-field-login" />
+                        <ComboBox fx:id="sexosBox" layoutX="12.0" layoutY="104.0" onAction="#validarCombo" onKeyReleased="#validarCombo" prefHeight="32.0" prefWidth="289.0" promptText="Selecione o sexo" styleClass="text-field-login" />
+                        <Label layoutX="21.0" layoutY="83.0" prefHeight="20.0" prefWidth="82.0" text="Sexo:*" />
+                        <Label layoutX="308.0" layoutY="83.0" prefHeight="20.0" prefWidth="295.0" text="Data Nascimento:*" />
+                        <DatePicker fx:id="txtDataNascimento" layoutX="302.0" layoutY="104.0" onDragDone="#validarDatasMouse" onKeyReleased="#validarDatas" prefHeight="32.0" prefWidth="291.0" promptText="Data Nascimento" />
+                        <TextField fx:id="txtCPF" layoutX="15.0" layoutY="166.0" onKeyReleased="#validarCpf" prefHeight="32.0" prefWidth="184.0" promptText="Digite o CPF" styleClass="text-field-login" />
+                        <Label layoutX="23.0" layoutY="146.0" prefHeight="20.0" prefWidth="49.0" text="CPF:*" />
+                        <Label layoutX="208.0" layoutY="146.0" prefHeight="20.0" prefWidth="44.0" text="RG:*" />
+                        <TextField fx:id="txtRG" layoutX="200.0" layoutY="166.0" onKeyReleased="#validarRG" prefHeight="32.0" prefWidth="231.0" promptText="Digite o RG" styleClass="text-field-login" />
+                        <TextField fx:id="txtCIE" layoutX="18.0" layoutY="234.0" onKeyReleased="#validarCIE" prefHeight="32.0" prefWidth="220.0" promptText="Digite o CIE" styleClass="text-field-login" />
+                        <Label layoutX="26.0" layoutY="214.0" prefHeight="20.0" prefWidth="180.0" text="CIE:*" />
+                        <Label layoutX="247.0" layoutY="213.0" prefHeight="20.0" prefWidth="180.0" text="NIT:*" />
+                        <TextField fx:id="txtNIT" layoutX="239.0" layoutY="233.0" onKeyReleased="#validarNIT" prefHeight="32.0" prefWidth="199.0" promptText="DIgite o NIT" styleClass="text-field-login" />
+                        <Label layoutX="15.0" layoutY="4.0" prefHeight="20.0" prefWidth="479.0" styleClass="textoMsg" text="Todos os campos a estrela tem preenchimento obrigatorio.*" textFill="#e10b0b">
                            <font>
                               <Font name="System Italic" size="13.0" />
                            </font>
-                           <styleClass>
-                              <String fx:value="mensage" />
-                              <String fx:value="pane-menu" />
-                           </styleClass>
                         </Label>
-                        <Pane layoutX="588.0" layoutY="22.0" prefHeight="198.0" prefWidth="187.0">
+                        <Pane layoutX="619.0" layoutY="22.0" prefHeight="254.0" prefWidth="187.0">
                            <children>
-                              <Pane layoutX="14.0" layoutY="6.0" prefHeight="158.0" prefWidth="158.0">
+                              <Pane layoutX="13.0" layoutY="19.0" prefHeight="158.0" prefWidth="158.0">
                                  <children>
-                                    <ImageView fx:id="imageFoto" fitHeight="116.0" fitWidth="102.0" layoutX="28.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imageFoto" fitHeight="144.0" fitWidth="132.0" layoutX="13.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass>
                               </Pane>
-                              <Hyperlink fx:id="linkFoto" layoutX="33.0" layoutY="167.0" onAction="#carregarArquivo" prefHeight="20.0" prefWidth="140.0" text="Carregar foto" />
+                              <Hyperlink fx:id="linkFoto" layoutX="28.0" layoutY="202.0" onAction="#carregarArquivo" prefHeight="27.0" prefWidth="130.0" text="Carregar Foto">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="text-field-login" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass></Hyperlink>
                            </children>
                            <styleClass>
-                              <String fx:value="border" />
+                              <String fx:value="grad-repeat" />
                               <String fx:value="pane-menu" />
                            </styleClass>
                         </Pane>
-                        <Label layoutX="592.0" layoutY="5.0" text="Foto não é obrigatorio." />
+                        <Label layoutX="624.0" layoutY="5.0" text="Foto não é obrigatorio.">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="lbNome" layoutX="149.0" layoutY="26.0" prefHeight="19.0" prefWidth="419.0" styleClass="textoMsg" textFill="#144ee0">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbSexo" layoutX="81.0" layoutY="85.0" prefHeight="19.0" prefWidth="219.0" styleClass="textoMsg" />
+                        <Label fx:id="lbDate" layoutX="448.0" layoutY="86.0" prefHeight="19.0" prefWidth="141.0" styleClass="textoMsg" />
+                        <Label fx:id="lbCpf" layoutX="64.0" layoutY="147.0" prefHeight="16.0" prefWidth="138.0" styleClass="textoMsg" />
+                        <Label fx:id="lbRg" layoutX="242.0" layoutY="148.0" prefHeight="19.0" prefWidth="142.0" styleClass="textoMsg" />
+                        <Label fx:id="lbCie" layoutX="65.0" layoutY="214.0" prefHeight="19.0" prefWidth="171.0" styleClass="textoMsg" />
+                        <Label fx:id="lbNit" layoutX="288.0" layoutY="214.0" prefHeight="19.0" prefWidth="288.0" styleClass="textoMsg" />
                      </children>
+                     <styleClass>
+                        <String fx:value="border" />
+                        <String fx:value="grad-repeat" />
+                        <String fx:value="colocar-borda" />
+                     </styleClass>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Dados Localização:">
+          <Tab styleClass="colocar-borda" text="Dados Localização:">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtCEP" layoutX="406.0" layoutY="88.0" prefHeight="32.0" prefWidth="169.0" promptText="Informe o nome." />
+                        <TextField fx:id="txtCEP" layoutX="406.0" layoutY="88.0" prefHeight="32.0" prefWidth="169.0" promptText="Informe o nome." styleClass="text-field-login" />
                         <Label layoutX="409.0" layoutY="68.0" prefHeight="20.0" prefWidth="180.0" text="CEP:*" />
                         <Label layoutX="14.0" layoutY="68.0" prefHeight="20.0" prefWidth="180.0" text="Bairro:*" />
-                        <TextField fx:id="txtBairro" layoutX="11.0" layoutY="88.0" prefHeight="32.0" prefWidth="394.0" promptText="Informe o nome." />
-                        <TextField fx:id="txtCidade" layoutX="169.0" layoutY="33.0" prefHeight="32.0" prefWidth="406.0" promptText="Informe o nome." />
-                        <Label layoutX="174.0" layoutY="13.0" prefHeight="20.0" prefWidth="180.0" text="Cidade:*" />
+                        <TextField fx:id="txtBairro" layoutX="11.0" layoutY="88.0" onKeyReleased="#validacaoEndereco" prefHeight="32.0" prefWidth="394.0" promptText="Informe o nome." styleClass="text-field-login" />
+                        <TextField fx:id="txtCidade" layoutX="242.0" layoutY="33.0" onKeyReleased="#validacaoCidade" prefHeight="32.0" prefWidth="333.0" promptText="Informe o nome." styleClass="text-field-login" />
+                        <Label layoutX="256.0" layoutY="13.0" prefHeight="20.0" prefWidth="180.0" text="Cidade:*" />
                         <Label layoutX="13.0" layoutY="13.0" prefHeight="20.0" prefWidth="180.0" text="Estado:*" />
-                        <TextField fx:id="txtEstado" layoutX="10.0" layoutY="33.0" prefHeight="32.0" prefWidth="158.0" promptText="Informe o nome." />
-                        <TextField fx:id="txtEndereco" layoutX="10.0" layoutY="147.0" prefHeight="32.0" prefWidth="400.0" promptText="Informe o nome." />
-                        <Label layoutX="13.0" layoutY="127.0" prefHeight="20.0" prefWidth="180.0" text="Endereço:*" />
-                        <TextField fx:id="txtNumero" layoutX="411.0" layoutY="147.0" prefHeight="32.0" prefWidth="160.0" promptText="Informe o nome." />
+                        <TextField fx:id="txtEstado" layoutX="10.0" layoutY="33.0" onKeyReleased="#validacaoEstado" prefHeight="32.0" prefWidth="232.0" promptText="Informe o nome." styleClass="text-field-login" />
+                        <TextField fx:id="txtEndereco" layoutX="10.0" layoutY="147.0" prefHeight="32.0" prefWidth="400.0" promptText="Informe o nome." styleClass="text-field-login" />
+                        <Label layoutX="13.0" layoutY="127.0" prefHeight="20.0" prefWidth="108.0" text="Endereço:*" />
+                        <TextField fx:id="txtNumero" layoutX="411.0" layoutY="147.0" prefHeight="32.0" prefWidth="160.0" promptText="Informe o nome." styleClass="text-field-login" />
                         <Label layoutX="414.0" layoutY="127.0" prefHeight="20.0" prefWidth="180.0" text="Numero:*" />
                         <Label layoutX="12.0" layoutY="181.0" prefHeight="20.0" prefWidth="180.0" text="E-mail:*" />
-                        <TextField fx:id="txtEmail" layoutX="9.0" layoutY="201.0" prefHeight="32.0" prefWidth="560.0" promptText="Informe o nome." />
-                        <TextField fx:id="txtFixo" layoutX="9.0" layoutY="254.0" prefHeight="32.0" prefWidth="165.0" promptText="Informe o nome." />
+                        <TextField fx:id="txtEmail" layoutX="9.0" layoutY="201.0" prefHeight="32.0" prefWidth="560.0" promptText="Informe o nome." styleClass="text-field-login" />
+                        <TextField fx:id="txtFixo" layoutX="9.0" layoutY="254.0" prefHeight="32.0" prefWidth="165.0" promptText="Informe o nome." styleClass="text-field-login" />
                         <Label layoutX="12.0" layoutY="234.0" prefHeight="20.0" prefWidth="180.0" text="Fixo:*" />
-                        <TextField fx:id="txtCelular" layoutX="175.0" layoutY="254.0" prefHeight="32.0" prefWidth="245.0" promptText="Informe o nome." />
+                        <TextField fx:id="txtCelular" layoutX="175.0" layoutY="254.0" prefHeight="32.0" prefWidth="245.0" promptText="Informe o nome." styleClass="text-field-login" />
                         <Label layoutX="184.0" layoutY="234.0" prefHeight="20.0" prefWidth="180.0" text="Celular:*" />
+                        <Label fx:id="lbEstado" layoutX="84.0" layoutY="14.0" prefHeight="19.0" prefWidth="156.0" />
+                        <Label fx:id="lbCidade" layoutX="328.0" layoutY="13.0" prefHeight="19.0" prefWidth="305.0" />
+                        <Label fx:id="lbBairro" layoutX="89.0" layoutY="70.0" prefHeight="19.0" prefWidth="229.0" text="Label" />
+                        <Label layoutX="452.0" layoutY="69.0" prefHeight="19.0" prefWidth="127.0" text="Label" />
+                        <Label layoutX="103.0" layoutY="129.0" prefHeight="19.0" prefWidth="253.0" text="Label" />
+                        <Label layoutX="494.0" layoutY="128.0" prefHeight="19.0" prefWidth="88.0" text="Label" />
+                        <Label layoutX="84.0" layoutY="183.0" prefHeight="19.0" prefWidth="415.0" text="Label" />
+                        <Label layoutX="66.0" layoutY="236.0" prefHeight="19.0" prefWidth="108.0" text="Label" />
+                        <Label layoutX="256.0" layoutY="235.0" prefHeight="19.0" prefWidth="136.0" text="Label" />
                      </children>
+                     <styleClass>
+                        <String fx:value="border" />
+                        <String fx:value="grad-repeat" />
+                        <String fx:value="colocar-borda" />
+                     </styleClass>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabReferencia" text="Dados Referencial:">
+            <Tab fx:id="tabReferencia" styleClass="colocar-borda" text="Dados Referencial:">
               <content>
                 <AnchorPane fx:id="pane1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="pessoaReferencia" layoutX="10.0" layoutY="27.0" prefHeight="107.0" prefWidth="753.0" />
-                        <Label layoutX="13.0" layoutY="7.0" text="Descriçao da sua referencia pessoal." />
-                        <Label layoutX="12.0" layoutY="139.0" prefHeight="20.0" prefWidth="324.0" text="Descriçao  do ponto de Referencia:" />
-                        <TextArea fx:id="pontoReferencia" layoutX="9.0" layoutY="159.0" prefHeight="99.0" prefWidth="753.0" />
+                        <TextArea fx:id="pessoaReferencia" layoutX="10.0" layoutY="27.0" prefHeight="107.0" prefWidth="753.0" styleClass="table" />
+                        <Label layoutX="13.0" layoutY="7.0" prefHeight="19.0" prefWidth="412.0" text="Descriçao da sua referencia pessoal:*" />
+                        <Label layoutX="12.0" layoutY="139.0" prefHeight="20.0" prefWidth="324.0" text="Descriçao  do ponto de Referencia:*" />
+                        <TextArea fx:id="pontoReferencia" layoutX="9.0" layoutY="159.0" prefHeight="99.0" prefWidth="753.0" styleClass="table" />
                      </children>
+                     <styleClass>
+                        <String fx:value="border" />
+                        <String fx:value="grad-repeat" />
+                        <String fx:value="colocar-borda" />
+                     </styleClass>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="tabAutenticacao" disable="true" text="Autenticaçao">
+            <Tab fx:id="tabAutenticacao" styleClass="colocar-borda" text="Autenticaçao">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="21.0" layoutY="32.0" text="Login: *" />
-                        <TextField fx:id="txtlogin" layoutX="18.0" layoutY="49.0" prefHeight="32.0" prefWidth="381.0" promptText="Digite seu login." />
-                        <Label layoutX="22.0" layoutY="87.0" text="Senha:*" />
-                        <PasswordField fx:id="txtSenha" layoutX="19.0" layoutY="103.0" prefHeight="32.0" prefWidth="381.0" promptText="Informe sua senha." />
-                        <PasswordField fx:id="cfSenha" layoutX="22.0" layoutY="159.0" prefHeight="32.0" prefWidth="381.0" promptText="Confirme sua senha." />
-                        <Label layoutX="25.0" layoutY="142.0" text="Confirma Senha:*" />
-                        <Label layoutX="29.0" layoutY="248.0" text="Obs: Esta funcionalidade so esta visivil para os funcionaios." />
-                        <ImageView fx:id="seguranca" fitHeight="202.0" fitWidth="200.0" layoutX="459.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="32.0" layoutY="23.0" text="Login: *" />
+                        <TextField fx:id="txtlogin" layoutX="18.0" layoutY="45.0" prefHeight="32.0" prefWidth="456.0" promptText="Digite seu login." styleClass="text-field-login" />
+                        <Label layoutX="31.0" layoutY="85.0" text="Senha:*" />
+                        <PasswordField fx:id="txtSenha" layoutX="19.0" layoutY="103.0" prefHeight="32.0" prefWidth="225.0" promptText="Informe sua senha." styleClass="text-field-login" />
+                        <PasswordField fx:id="cfSenha" layoutX="245.0" layoutY="104.0" prefHeight="32.0" prefWidth="228.0" promptText="Confirme sua senha." styleClass="text-field-login" />
+                        <Label layoutX="254.0" layoutY="84.0" text="Confirma Senha:*" />
+                        <Label layoutX="22.0" layoutY="163.0" prefHeight="32.0" prefWidth="389.0" text="Obs: Dados para acesso restrito ao sistema.">
+                           <styleClass>
+                              <String fx:value="textoMsg" />
+                              <String fx:value="border" />
+                           </styleClass></Label>
+                        <Label layoutX="96.0" layoutY="24.0" prefHeight="19.0" prefWidth="259.0" text="Label" />
+                        <Label layoutX="96.0" layoutY="86.0" prefHeight="19.0" prefWidth="145.0" text="Label" />
+                        <Label layoutX="393.0" layoutY="86.0" prefHeight="19.0" prefWidth="158.0" text="Label" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="border" />
+                        <String fx:value="grad-repeat" />
+                        <String fx:value="colocar-borda" />
+                     </styleClass>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab styleClass="colocar-borda" text="Dados Associaçao">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="colocar-borda">
+                     <children>
+                        <Pane layoutX="6.0" layoutY="7.0" prefHeight="255.0" prefWidth="708.0">
+                           <children>
+                              <ComboBox fx:id="associacaoBox" layoutX="18.0" layoutY="155.0" prefHeight="32.0" prefWidth="589.0" promptText="Selecione" styleClass="text-field-login" />
+                              <Label layoutX="23.0" layoutY="133.0" prefHeight="20.0" prefWidth="127.0" styleClass="txtMsg" text="Associação:" />
+                              <Label layoutX="18.0" layoutY="6.0" prefHeight="20.0" prefWidth="127.0" styleClass="txtMsg" text="Profissões:" />
+                              <ComboBox fx:id="profissaoBox" layoutX="13.0" layoutY="26.0" prefHeight="32.0" prefWidth="370.0" promptText="Selecione" styleClass="text-field-login" />
+                              <Button fx:id="btProf" layoutX="384.0" layoutY="25.0" mnemonicParsing="false" onAction="#carregarFormProfissao" prefHeight="32.0" prefWidth="65.0" styleClass="text-field-login" text="Nova" />
+                              <Button fx:id="btCarg" layoutX="319.0" layoutY="93.0" mnemonicParsing="false" onAction="#carregarFormCargo" prefHeight="32.0" prefWidth="65.0" styleClass="text-field-login" text="Novo" />
+                              <ComboBox fx:id="cargosBox" layoutX="15.0" layoutY="93.0" prefHeight="32.0" prefWidth="303.0" promptText="Selecione" styleClass="text-field-login" />
+                              <Label fx:id="labelCargo" layoutX="19.0" layoutY="73.0" prefHeight="20.0" prefWidth="127.0" styleClass="txtMsg" text="Cargos:" />
+                              <DatePicker fx:id="txtMatricula" layoutX="22.0" layoutY="211.0" prefHeight="32.0" prefWidth="212.0" promptText="dd/MM/YYYy" />
+                              <Label layoutX="22.0" layoutY="191.0" prefHeight="20.0" prefWidth="158.0" text="Data Matricula:*" />
+                           </children>
+                        </Pane>
+                        <Label fx:id="txtMsg" layoutX="23.0" layoutY="359.0" prefHeight="32.0" prefWidth="571.0" styleClass="textoMsg" />
+                        <Button fx:id="btGrava" layoutX="32.0" layoutY="261.0" mnemonicParsing="false" onAction="#gravar" prefHeight="32.0" prefWidth="88.0" styleClass="text-field-login" text="Gravar" />
+                        <Button fx:id="btGrava1" layoutX="122.0" layoutY="262.0" mnemonicParsing="false" onAction="#testarForm" prefHeight="32.0" prefWidth="108.0" styleClass="text-field-login" text="Atualizar" />
+                        <Button fx:id="btGrava2" layoutX="232.0" layoutY="263.0" mnemonicParsing="false" onAction="#testarForm" prefHeight="32.0" prefWidth="108.0" styleClass="text-field-login" text="Limpar" />
+                        <Button fx:id="btGrava21" layoutX="344.0" layoutY="262.0" mnemonicParsing="false" onAction="#testeAutomatizado" prefHeight="32.0" prefWidth="108.0" styleClass="text-field-login" text="Testar" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
         </tabs>
+         <styleClass>
+            <String fx:value="grad-repeat" />
+            <String fx:value="pane-menu" />
+            <String fx:value="colocar-borda" />
+            <String fx:value="textoMsg" />
+         </styleClass>
       </TabPane>
-      <Button fx:id="btGrava" layoutX="17.0" layoutY="577.0" mnemonicParsing="false" onAction="#gravar" prefHeight="32.0" prefWidth="88.0" text="Gravar" />
-      <Button fx:id="btGrava1" layoutX="106.0" layoutY="577.0" mnemonicParsing="false" onAction="#testarForm" prefHeight="32.0" prefWidth="108.0" text="Atualizar" />
-      <Button fx:id="btGrava2" layoutX="215.0" layoutY="577.0" mnemonicParsing="false" onAction="#testarForm" prefHeight="32.0" prefWidth="108.0" text="Limpar" />
-      <Button fx:id="btGrava21" layoutX="324.0" layoutY="577.0" mnemonicParsing="false" onAction="#testarForm" prefHeight="32.0" prefWidth="108.0" text="Cancelar" />
-      <ComboBox fx:id="associacaoBox" layoutX="16.0" layoutY="485.0" prefHeight="32.0" prefWidth="751.0" promptText="Selecione" />
-      <Label layoutX="21.0" layoutY="465.0" prefHeight="20.0" prefWidth="127.0" text="Associação:" />
-      <Label layoutX="20.0" layoutY="409.0" prefHeight="20.0" prefWidth="127.0" text="Profissões:" />
-      <ComboBox fx:id="profissaoBox" layoutX="15.0" layoutY="429.0" prefHeight="32.0" prefWidth="370.0" promptText="Selecione" />
-      <Button fx:id="btProf" layoutX="386.0" layoutY="428.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="65.0" text="Nova" />
-      <Button fx:id="btCarg" layoutX="757.0" layoutY="427.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="65.0" text="Novo" />
-      <ComboBox fx:id="cargosBox" layoutX="453.0" layoutY="427.0" prefHeight="32.0" prefWidth="303.0" promptText="Selecione" />
-      <Label fx:id="labelCargo" layoutX="457.0" layoutY="407.0" prefHeight="20.0" prefWidth="127.0" text="Cargos:" />
-      <Label fx:id="txtMsg" layoutX="21.0" layoutY="547.0" prefHeight="15.0" prefWidth="593.0" text="Mensagem:" />
     </children>
 </AnchorPane>

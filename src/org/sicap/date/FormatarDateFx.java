@@ -27,6 +27,12 @@ public class FormatarDateFx {
             return null;
         }
     }
+    
+    public static LocalDate toLocalDate(Date d) {
+        Instant instant = Instant.ofEpochMilli(d.getTime());
+        LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+        return localDate;
+    }
 
     public static Date asDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());

@@ -42,15 +42,51 @@ public class DaoAssociado extends DaoGenerico<Associado, Serializable> {
     }
 
     public Funcionario getFuncionario(String login, String senha) {
-        Funcionario f = null;
+        Funcionario f;
         try {
             Query q = getEntityManager().createNamedQuery("Funcionario.AutenticaSistema");
-            q.setParameter("user", login);
+            q.setParameter("login", login);
             q.setParameter("password", senha);
-            f = (Funcionario) q.getResultList().get(0);
-
+            f = (Funcionario) q.getSingleResult();
+            return f;
         } catch (Exception e) {
+            return null;
+            //  System.out.println("" + e.getMessage());
         }
-        return f;
+
     }
+
+    public Funcionario autenticaLogin(String login) {
+        Funcionario f;
+        try {
+            Query q = getEntityManager().createNamedQuery("Funcionario.Login");
+            q.setParameter("login", login);
+
+            f = (Funcionario) q.getSingleResult();
+            return f;
+        } catch (Exception e) {
+            return null;
+            //  System.out.println("" + e.getMessage());
+        }
+
+    }
+
+    public Funcionario autenticacaoSenha(String senha) {
+        Funcionario f;
+        try {
+            Query q = getEntityManager().createNamedQuery("Funcionario.Senha");
+            q.setParameter("password", senha);
+            f = (Funcionario) q.getSingleResult();
+            return f;
+        } catch (Exception e) {
+            return null;
+            //  System.out.println("" + e.getMessage());
+        }
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new DaoAssociado().getFuncionario("12345", "admin").getNome());
+    }
+
 }

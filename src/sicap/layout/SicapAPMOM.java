@@ -18,10 +18,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javax.persistence.Persistence;
+import org.sicap.consultas.DaoAdminAutenticacao;
 import org.sicap.consultas.DaoAssociacao;
 import org.sicap.consultas.DaoAssociado;
 import org.sicap.consultas.DaoCargo;
 import org.sicap.consultas.DaoProfissao;
+import org.sicap.negocio.Administrador;
 import org.sicap.negocio.Associacao;
 import org.sicap.negocio.Associado;
 import org.sicap.negocio.Cargo;
@@ -185,6 +187,12 @@ public class SicapAPMOM extends Application {
     public static void main(String[] args) {
         try {
             // new SicapAPMOM().testarAplicacao();
+            DaoAdminAutenticacao autenticacao = new DaoAdminAutenticacao();
+            Administrador a = new Administrador();
+            a.setIdAdmin(0);
+            a.setUsuario("admin");
+            a.setSenha("admin");
+            autenticacao.save(a);
 
         } catch (Exception e) {
         }

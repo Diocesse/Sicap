@@ -34,7 +34,6 @@ public class DaoAssociacao extends DaoGenerico<Associacao, Serializable> {
             Query q = getEntityManager().createNamedQuery("Associacao.todasPorCNPJNome");
             q.setParameter("filtro", "%" + name + "%");
             q.setParameter("filtrarCNPJ", name);
-
             return q.getResultList();
         } catch (Exception e) {
 
@@ -42,12 +41,23 @@ public class DaoAssociacao extends DaoGenerico<Associacao, Serializable> {
         }
     }
 
-    public static void main(String[] args) {
-        List<Associacao> lista = new DaoAssociacao().listAssociations("");
-        System.out.println(lista);
-        for (Associacao a : lista) {
-            System.out.println("Name: " + a.getCNPJ());
+    public Associacao consultaPorCnpj(String name) {
+        Associacao associacao;
+        try {
+            Query q = getEntityManager().createNamedQuery("Associacao.consultaPorCnpj");
+            q.setParameter("buscar", name);
+             associacao = (Associacao) q.getSingleResult();
+            return associacao;
+        } catch (Exception e) {
+            System.out.println(""+e.getMessage());
+            return null;
         }
+    }
+
+    public static void main(String[] args) {
+        Associacao a = new DaoAssociacao().consultaPorCnpj("79.237.539/8272-98");
+        System.out.println(a);
+      
     }
 
     public List<Associacao_Sample> listaAssociacoesFX(String nome) {

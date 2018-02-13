@@ -15,16 +15,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.sicap.consultas.DaoAssociacao;
 import org.sicap.negocio.Associacao;
 import org.sicap.sample.Associacao_Sample;
+import org.sicap.util.Utilidades;
 import sicap.layout.SicapAPMOM;
 
 /**
@@ -34,9 +39,6 @@ import sicap.layout.SicapAPMOM;
  */
 public class ControllerFormAssociacao implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @FXML
     private AnchorPane layout;
 
@@ -52,6 +54,30 @@ public class ControllerFormAssociacao implements Initializable {
     private TableColumn<Associacao_Sample, String> nameFX;
     @FXML
     private TableColumn<Associacao_Sample, String> enderecoFX;
+    @FXML
+    private Label lbPesquisa;
+    @FXML
+    private Button btNovo, btEditar, btRemove;
+    public Utilidades utilidades = Utilidades.InstanceOf();
+    
+    public boolean editar(ActionEvent event) {
+        try {
+            associacao=null;
+            Associacao_Sample sample = (Associacao_Sample)tableAssociacoes.getSelectionModel().getSelectedItem();
+            associacao = daoAssociacao.getById(Associacao.class, sample.getIdAssociacaoFX());
+            sicap.openPrincipal("FormularioCadastroAssociacao", "Formulario de cadastro das Associações.");
+            return true;
+        } catch (Exception e) {
+            System.out.println("" + e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    public void carregarButtonImg() {
+        btNovo.setGraphic(utilidades.iconPerson(30, 30, "novo"));
+        btEditar.setGraphic(utilidades.iconPerson(30, 30, "editar"));
+        btRemove.setGraphic(utilidades.iconPerson(30, 30, "excluir"));
+    }
 
     public static Associacao getAssociacao() {
         return associacao;
@@ -62,19 +88,28 @@ public class ControllerFormAssociacao implements Initializable {
     }
     public static DaoAssociacao daoAssociacao = new DaoAssociacao();
 
+    @FXML
+    public void pesquisarButton(ActionEvent e) {
+        atualizarTableAssociacao(txtBusca.getText());
+    }
+
     public void atualizarTableAssociacao(String busca) {
 
         try {
-            System.out.println(txtBusca.getText());
+            ImageView view = new ImageView(new Image(getClass().getResourceAsStream("/sicap/image/pesquisar.gif")));
+            view.fitHeightProperty().set(20);
+            view.fitWidthProperty().set(20);
+            lbPesquisa.setGraphic(view);
             Toolkit kit = Toolkit.getDefaultToolkit();
             Dimension screen = kit.getScreenSize();
-            tableAssociacoes.setPrefWidth(screen.width - 10);
-            tableAssociacoes.setPrefHeight(screen.height-10 );
+
+            //  tableAssociacoes.setPrefWidth(screen.width - 10);
+            // tableAssociacoes.setPrefHeight(screen.height-10 );
             ObservableList<Associacao_Sample> lista = FXCollections.observableList(daoAssociacao.listaAssociacoesFX(busca));
             idAssociacaoFX.setCellValueFactory(new PropertyValueFactory<Associacao_Sample, Long>("idAssociacaoFX"));
             nameFX.setCellValueFactory(new PropertyValueFactory<Associacao_Sample, String>("nameFx"));
             enderecoFX.setCellValueFactory(new PropertyValueFactory<Associacao_Sample, String>("enderecoFx"));
-           
+
             tableAssociacoes.setItems(lista);
 
         } catch (Exception e) {
@@ -91,7 +126,6 @@ public class ControllerFormAssociacao implements Initializable {
 
     }
 
-    
     @FXML
     public void navegarKey(KeyEvent event) {
         try {
@@ -105,6 +139,7 @@ public class ControllerFormAssociacao implements Initializable {
 
     @FXML
     public void novaAssociacao(ActionEvent event) {
+        associacao=null;
         sicap.openPrincipal("FormularioCadastroAssociacao", "Formulario de cadastro das Associações.");
     }
     long id = -2;
@@ -126,7 +161,7 @@ public class ControllerFormAssociacao implements Initializable {
             id++;
         } else {
             id = 1;
-             a = daoAssociacao.getById(Associacao.class, id);
+            a = daoAssociacao.getById(Associacao.class, id);
             txtCNPJ.setText(a.getCNPJ());
             txtName.setText(a.getAssociacao());
             //     tableAssociacoes.getSelectionModel().select(Integer.valueOf(String.valueOf(id)));
@@ -156,7 +191,8 @@ public class ControllerFormAssociacao implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         //  atualizarTableAssociacao(txtBusca.getText());
-       // mascaraCNPJ();
+        // mascaraCNPJ();
+        carregarButtonImg();
         atualizarTableAssociacao(txtBusca.getText());
     }
 

@@ -23,20 +23,44 @@ public class DaoAdminAutenticacao extends DaoGenerico<Administrador, Serializabl
             Query q = getEntityManager().createNamedQuery("Administrador.AutenticacaoRestrita");
             q.setParameter("user", login);
             q.setParameter("password", senha);
-            List<Administrador> adm = q.getResultList();
-            administrador = adm.get(0);
-
+            administrador = (Administrador) q.getSingleResult();
+            return administrador;
         } catch (Exception e) {
-            administrador = new Administrador();
-            System.out.println(""+e.getLocalizedMessage());
-        }
-        
+            return null;
 
-        return administrador;
+        }
+
+    }
+
+    public Administrador autenticacaoLogin(String login) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Adm.Login");
+            q.setParameter("user", login);
+            Administrador adm =(Administrador) q.getSingleResult();
+            return adm;
+        } catch (Exception e) {
+            System.out.println("" + e.getLocalizedMessage());
+            return null;
+        }
+
+    }
+     public Administrador autenticacaoPAssword(String senha) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Adm.user");
+            q.setParameter("password", senha);
+            Administrador adm =(Administrador) q.getSingleResult();
+            return adm;
+        } catch (Exception e) {
+            System.out.println("" + e.getLocalizedMessage());
+            return null;
+        }
+
     }
 
     public static void main(String[] args) {
-        Administrador adm = new DaoAdminAutenticacao().acessoRestritoAdmin("admin", "admin");
+
+        Administrador adm = new DaoAdminAutenticacao().autenticacaoPAssword("12345");
+
         System.out.println("Login:" + adm.getUsuario() + " Senha:" + adm.getSenha());
 
     }

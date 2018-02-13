@@ -22,7 +22,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "administrador")
 @NamedQueries({
-    @NamedQuery(name = "Administrador.AutenticacaoRestrita", query = "SELECT a FROM Administrador a WHERE a.usuario LIKE :user and a.senha LIKE :password")
+    @NamedQuery(name = "Administrador.AutenticacaoRestrita", query = "SELECT a FROM Administrador a WHERE a.usuario LIKE :user and a.senha LIKE :password"),
+    @NamedQuery(name = "Adm.Login",query = "select a From Administrador a where a.usuario like :user"),
+    @NamedQuery(name = "Adm.user",query = "select a From Administrador a where a.senha like :password")
 })
 public class Administrador implements Serializable {
 
@@ -32,7 +34,7 @@ public class Administrador implements Serializable {
     private int idAdmin;
     @Column(name = "login", unique = true,  nullable = false)
     private String usuario;
-    @Column(name = "senha", nullable = false)
+    @Column(name = "senha", unique = true, nullable = false)
     private String senha;
 
     public int getIdAdmin() {

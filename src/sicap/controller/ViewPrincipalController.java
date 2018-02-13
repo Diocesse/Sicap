@@ -17,13 +17,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -52,9 +53,8 @@ public class ViewPrincipalController implements Initializable {
     private ImageView imageBanner, imageLogo;
 
     @FXML
-    Label txtOla, txtOla1;
-    @FXML
-    private Circle circle;
+    Label txtOla, txtOla1,txtCargo,txtProf;
+
     @FXML
     private Hyperlink linkAssociacao;
     @FXML
@@ -64,7 +64,7 @@ public class ViewPrincipalController implements Initializable {
     @FXML
     private Hyperlink linkSair;
     @FXML
-    private Hyperlink linkPagamento;
+    private Hyperlink linkPagamento, logout;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,38 +77,74 @@ public class ViewPrincipalController implements Initializable {
         if (ControllerSicap.getF() != null) {
             txtOla.setText("Seja bem vindo: " + ControllerSicap.getF().getNome().toUpperCase());
             txtOla1.setText(ControllerSicap.getF().getAssociacao().getAssociacao().toUpperCase());
-            imageLogo.setImage(new Image(new ByteArrayInputStream(ControllerSicap.getF().getAssociacao().getLogo())));
+            txtCargo.setText("Cargo:"+ControllerSicap.getF().getCargo().getCargo());
+            txtProf.setText("Profissão:"+ControllerSicap.getF().getProfissao().getProfissao());
+            try {
+                imageLogo.setImage(new Image(new ByteArrayInputStream(ControllerSicap.getF().getAssociacao().getLogo())));
+                imageBanner.setImage(new Image(new ByteArrayInputStream(ControllerSicap.getF().getFoto())));
+                 
+            } catch (Exception e) {
+                System.out.println("Imagem não carregadas...");
+            }
+
+        }
+
+        if (ControllerSicap.getAdm() != null) {
+            txtOla.setText("Bem vindo: " + ControllerSicap.getAdm().getUsuario());
 
         }
 
     }
-  public static SicapAPMOM sicap = SicapAPMOM.instance();
+
+    @FXML
+    public void logout(ActionEvent event) {
+        ControllerSicap.setF(null);
+        ControllerSicap.setAdm(null);
+
+        ((Stage) logout.getScene().getWindow()).close();
+
+    }
+
+    public static SicapAPMOM sicap = SicapAPMOM.instance();
 
     @FXML
     public void carregarFormAssociacao(ActionEvent event) {
-
-        sicap.openPrincipal("FormAssociacao", "Pesquisar Associações");
+        if (ControllerSicap.getF() != null || ControllerSicap.getAdm() != null) {
+            sicap.openPrincipal("FormAssociacao", "Pesquisar Associações");
+        }
     }
     private File f;
 
     @FXML
     public void carregarArquivo(ActionEvent e) throws FileNotFoundException, IOException {
-        FileChooser file = new FileChooser();
-        try {
-            f = file.showOpenDialog(new Stage());
-            FileInputStream stream = new FileInputStream(f);
-            imageBanner.setImage(new Image(stream));
 
-        } catch (Exception ex) {
-            System.out.println(ex.fillInStackTrace());
+        if (ControllerSicap.getF() != null) {
+
+            FileChooser file = new FileChooser();
+            try {
+                f = file.showOpenDialog(new Stage());
+                FileInputStream stream = new FileInputStream(f);
+                imageBanner.setImage(new Image(stream));
+
+            } catch (Exception ex) {
+                System.out.println(ex.fillInStackTrace());
+            }
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Mensagem");
+            alert.setHeaderText("Obs. Informação");
+            alert.setContentText("Você não é funcionario.");
+
+            alert.showAndWait();
         }
-
     }
 
     @FXML
     public void carregarFormAssociado(ActionEvent event) {
-        sicap.carregarFormCargosProfissao("FormAssociado", "Formulario de cadastro dos Cargos", new Stage());
+        if (ControllerSicap.getF() != null || ControllerSicap.getAdm() != null) {
 
+            sicap.carregarFormCargosProfissao("FormAssociado", "Iniciar cadastro Associado.", new Stage());
+        }
     }
 
     private int h = 40;
@@ -145,7 +181,7 @@ public class ViewPrincipalController implements Initializable {
             ImageView img2 = new ImageView(image2);
             img2.fitHeightProperty().set(h);
             img2.fitWidthProperty().set(w);
-            itemPagamento.setGraphic(img2);
+            //    itemPagamento.setGraphic(img2);
 
             imageBanner.setImage(new Image(getClass().getResourceAsStream("/sicap/image/pessoaM.gif")));
             imageBanner.fitHeightProperty().set(108);

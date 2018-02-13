@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.*?>
 
-<AnchorPane id="AnchorPane" fx:id="layout" prefHeight="646.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerFormAssociacao">
+<AnchorPane id="AnchorPane" fx:id="layout" prefHeight="646.0" prefWidth="1099.0" styleClass="grad-repeat" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicap.controller.ControllerFormAssociacao">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
@@ -18,30 +19,137 @@
     <children>
         <Pane layoutX="2.0" layoutY="2.0" prefHeight="635.0" prefWidth="1099.0">
             <children>
-                <Label layoutX="14.0" layoutY="54.0" prefHeight="25.0" prefWidth="220.0" text="Pesquisar pelo nome ou CNPJ." />
-                <TableView fx:id="tableAssociacoes" layoutX="7.0" layoutY="110.0" onKeyReleased="#navegarKey" prefHeight="354.0" prefWidth="1062.0">
-                    <columns>
-                        <TableColumn fx:id="idAssociacaoFX" prefWidth="75.0" styleClass="fonte" text="ID" />
-                        <TableColumn fx:id="nameFX" prefWidth="589.0" styleClass="fonte" text="Nome" />
-                        <TableColumn fx:id="enderecoFX" prefWidth="397.0" styleClass="fonte" text="Endereço" />
-                    </columns>
-                </TableView>
-                <TextField fx:id="txtBusca" layoutX="9.0" layoutY="78.0" onKeyReleased="#filtrarAssociacoes" prefHeight="25.0" prefWidth="547.0" />
-                <Label layoutX="224.0" layoutY="16.0" prefHeight="53.0" prefWidth="601.0" text="FILTAR ASSOCIAÇOES">
+                <Label layoutX="18.0" layoutY="9.0" prefHeight="82.0" prefWidth="601.0" text="FILTAR ASSOCIAÇOES">
                     <font>
                         <Font name="FreeMono Bold" size="52.0" />
                     </font>
                 </Label>
-                <Button layoutX="557.0" layoutY="78.0" mnemonicParsing="false" onAction="#novaAssociacao" prefHeight="25.0" prefWidth="86.0" text="Novo" />
-                <Button layoutX="644.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Editar" />
-                <Button layoutX="731.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Remover" />
-                <Button layoutX="818.0" layoutY="78.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="77.0" text="Fechar" />
-            <Button layoutX="944.0" layoutY="78.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="25.0" prefWidth="54.0" text="|&lt;&lt;" />
-            <Button layoutX="999.0" layoutY="78.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="25.0" prefWidth="47.0" text="|&lt;" />
+            <TabPane layoutX="15.0" layoutY="91.0" prefHeight="200.0" prefWidth="467.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Pesquisar Dados">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="164.0" prefWidth="471.0" style="-fx-background-color: white;">
+                           <children>
+                              <Pane layoutX="9.0" layoutY="21.0" prefHeight="129.0" prefWidth="437.0">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                    <String fx:value="textoMsg" />
+                                 </styleClass>
+                                 <children>
+                                        <TextField fx:id="txtBusca" layoutX="15.0" layoutY="42.0" onKeyReleased="#filtrarAssociacoes" prefHeight="26.0" prefWidth="384.0" styleClass="text-field-login" />
+                                        <Label fx:id="lbPesquisa" layoutX="21.0" layoutY="13.0" prefHeight="25.0" prefWidth="401.0" text="Consultar Associaçoes por nome ou cnpj!" />
+                                    <Button layoutX="21.0" layoutY="73.0" mnemonicParsing="false" onAction="#pesquisarButton" text="Pesquisar" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Relatorios">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="254.0" style="-fx-background-color: white;">
+                           <children>
+                              <Hyperlink layoutX="12.0" layoutY="22.0" styleClass="mensage" text="Exibir todos associados." />
+                              <Hyperlink layoutX="11.0" layoutY="55.0" styleClass="mensage" text="Exibir PDF de todos associados." />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+               <styleClass>
+                  <String fx:value="textoMsg" />
+                  <String fx:value="colocar-borda" />
+               </styleClass>
+            </TabPane>
+            <TabPane layoutX="485.0" layoutY="91.0" prefHeight="200.0" prefWidth="589.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Operaçoes e Navegaçao">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="164.0" prefWidth="449.0" style="-fx-background-color: white;" styleClass="textoMsg">
+                           <children>
+                                  <Button fx:id="btNovo" layoutX="11.0" layoutY="18.0" mnemonicParsing="false" onAction="#novaAssociacao" prefHeight="52.0" prefWidth="106.0" text="Novo">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass></Button>
+                                  <Button fx:id="btEditar" layoutX="128.0" layoutY="18.0" mnemonicParsing="false" onAction="#editar" prefHeight="52.0" prefWidth="111.0" text="Editar">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass></Button>
+                                  <Button fx:id="btRemove" layoutX="9.0" layoutY="82.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="109.0" text="Remover">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass></Button>
+                                  <Button layoutX="128.0" layoutY="82.0" mnemonicParsing="false" onAction="#close" prefHeight="52.0" prefWidth="112.0" text="Fechar">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass></Button>
+                              <Button layoutX="278.0" layoutY="48.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="57.0" prefWidth="72.0" text="&gt;|">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass>
+                              </Button>
+                              <Button layoutX="354.0" layoutY="51.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="52.0" prefWidth="71.0" text="|&lt;&lt;">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass>
+                              </Button>
+                              <Button layoutX="432.0" layoutY="55.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="47.0" prefWidth="75.0" text="|&lt;">
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="pane-menu" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                     <styleClass>
+                        <String fx:value="grad-repeat" />
+                        <String fx:value="pane-menu" />
+                     </styleClass>
+                </Tab>
+              </tabs>
+               <styleClass>
+                  <String fx:value="textoMsg" />
+                  <String fx:value="colocar-borda" />
+               </styleClass>
+            </TabPane>
+            <TabPane layoutX="17.0" layoutY="295.0" prefHeight="324.0" prefWidth="1058.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Todas Associaçoes cadastradas.">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="1056.0">
+                           <children>
+                                  <TableView fx:id="tableAssociacoes" layoutX="9.0" layoutY="9.0" onKeyReleased="#navegarKey" prefHeight="266.0" prefWidth="1038.0">
+                                      <columns>
+                                          <TableColumn fx:id="idAssociacaoFX" prefWidth="75.0" text="ID" />
+                                          <TableColumn fx:id="nameFX" prefWidth="589.0" text="Nome" />
+                                          <TableColumn fx:id="enderecoFX" prefWidth="397.0" text="Endereço" />
+                                      </columns>
+                                 <styleClass>
+                                    <String fx:value="grad-repeat" />
+                                    <String fx:value="link" />
+                                 </styleClass>
+                                  </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+               <styleClass>
+                  <String fx:value="textoMsg" />
+                  <String fx:value="colocar-borda" />
+               </styleClass>
+            </TabPane>
           
             </children>
         </Pane>
-      <Button layoutX="898.0" layoutY="80.0" mnemonicParsing="false" onAction="#nevegar" prefHeight="25.0" prefWidth="47.0" text="&gt;|" />
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

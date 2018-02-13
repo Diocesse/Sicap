@@ -8,6 +8,7 @@ package sicap.controller;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +21,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import org.eclipse.persistence.sdo.helper.extension.SDOUtil;
 import org.sicap.consultas.DaoAdminAutenticacao;
 import org.sicap.consultas.DaoAssociado;
 import org.sicap.consultas.DaoProfissao;
@@ -46,7 +49,7 @@ public class ControllerSicap implements Initializable {
     @FXML
     private Button btSave, btCancelar;
     @FXML
-    private Label txtInfo;
+    private Label txtInfo, txtInfo1,lbNome;
     @FXML
     private AnchorPane layout;
     @FXML
@@ -66,58 +69,158 @@ public class ControllerSicap implements Initializable {
     }
 
     SicapAPMOM sicap = SicapAPMOM.instance();
-    private static Funcionario f;
+    private static Funcionario f = null;
     DaoProfissao dp = new DaoProfissao();
     DaoAdminAutenticacao autenticacao = new DaoAdminAutenticacao();
 
     public static Funcionario getF() {
         return f;
     }
-    private Administrador adm;
 
-    public Administrador getAdm() {
+    public static void setF(Funcionario f) {
+        ControllerSicap.f = f;
+    }
+
+    private static Administrador adm = null;
+
+    public static Administrador getAdm() {
         return adm;
     }
 
-    public void setAdm(Administrador adm) {
-        this.adm = adm;
+    public static void setAdm(Administrador adm) {
+        ControllerSicap.adm = adm;
+    }
+
+    public ImageView iconSucesso() {
+        Image image = new Image(getClass().getResourceAsStream("/sicap/image/sucesso.gif"));
+        ImageView iv = new ImageView(image);
+        iv.fitHeightProperty().set(20);
+        iv.fitWidthProperty().set(20);
+        return iv;
+
+    }
+
+    public ImageView iconFalha() {
+        Image image = new Image(getClass().getResourceAsStream("/sicap/image/erro.gif"));
+        ImageView iv = new ImageView(image);
+        iv.fitHeightProperty().set(20);
+        iv.fitWidthProperty().set(20);
+        return iv;
+
+    }
+    Administrador user=null;
+    Funcionario userF=null;
+
+    @FXML
+    public void userLogin(KeyEvent event) {
+
+        user = autenticacao.autenticacaoLogin(txtUser.getText());
+        if (user != null) {
+            txtInfo.setText("Seu login esta valido! ");
+
+            txtInfo.setGraphic(iconSucesso());
+            userF =null;
+
+        }
+        userF = da.autenticaLogin(txtUser.getText());
+        if (userF != null) {
+            txtInfo.setText("Seu login esta valido! ");
+            txtInfo.setGraphic(iconSucesso());
+             user=null;
+        }
+        if (user == null && userF == null) {
+            txtInfo.setText("Seu login esta Invalido! ");
+            txtInfo.setGraphic(iconFalha());
+        }
+
     }
 
     @FXML
-    public void loginTextfield(KeyEvent event) {
+    public void passwordLogin(KeyEvent event) {
         try {
-            f = da.getFuncionario(txtUser.getText(), txtSenha.getText());
-            adm = autenticacao.acessoRestritoAdmin(txtUser.getText(), txtSenha.getText());
-            if (f != null || adm != null) {
-                System.out.println("SucessoFul...");
-                txtOla.setText("Seu acesso foi autorizado!");
-                txtOla.setBackground(Background.EMPTY);
-                imageAuto.setImage(new Image(getClass().getResourceAsStream("/sicap/image/pessoaM.gif")));
-                txtInfo.setText("" + f.getNome());
-                if (adm == null )
-                logo.setImage(new Image(new ByteArrayInputStream(f.getAssociacao().getLogo())));
+           System.out.println("Adm: " + user + " Func: " + userF);
+            if (user != null) {
+                System.out.println("Passou aqui...");
+                Administrador passwd = autenticacao.autenticacaoPAssword(txtSenha.getText());
+                if (passwd != null) {
+                    txtInfo1.setText("Sua senha está valido!");
+                    txtInfo1.setGraphic(iconSucesso());
+                    txtOla.setText("Seu acesso foi autorizado!");
+                    txtOla.setTextFill(Paint.valueOf("green"));
+                    txtOla.setGraphic(iconSucesso());
+                    lbNome.setText("Adm: "+passwd.getUsuario());
+                }
+                if (passwd == null) {
+                    txtInfo1.setText("Sua senha está Invalido!");
+                    txtInfo1.setGraphic(iconFalha());
+                 //   txtOla.setText("Seu acesso nao esta mais foi autorizado!");
+                }
+            }else if (userF != null) {
+                Funcionario passwdF = da.getFuncionario(userF.getUser(),txtSenha.getText());
+                if (passwdF != null) {
+                    txtInfo1.setText("Sua senha está valido! ");
+                    txtInfo1.setGraphic(iconSucesso());
+                    txtOla.setText("Seu acesso foi autorizado!");
+                    txtOla.setTextFill(Paint.valueOf("green"));
+                    txtOla.setGraphic(iconSucesso());
+                    lbNome.setText(passwdF.getNome());
+                    try {
+                        imageAuto.setImage(new Image(new ByteArrayInputStream(passwdF.getFoto())));
+                    } catch (Exception e) {
+                        System.out.println("Foto não encontrada seus dados.");
+                    }
 
+                }
+                if (passwdF == null) {
+                    txtInfo1.setText("Sua senha está Invalido!");
+                    txtInfo1.setGraphic(iconFalha());
+                    
+                }
             }
+
         } catch (Exception e) {
-            System.out.println("" + e.getMessage());
         }
+
+    }
+
+    public Funcionario validarAcessoFunc(String login, String senha) {
+
+        f = da.getFuncionario(login, senha);
+
+        return f;
+
+    }
+
+    public Administrador validarAcessoAdm(String login, String senha) {
+        adm = autenticacao.acessoRestritoAdmin(login, senha);
+        return adm;
+
     }
     private DaoAssociado da = new DaoAssociado();
 
     @FXML
-    public void logar(Event e) {
+    public void logar(ActionEvent e) {
         //Funcionario f;
-        try {
-            //f = da.getFuncionario(txtUser.getText(), txtSenha.getText());
-            if (f != null || adm != null ) {
-                ((Stage) btCancelar.getScene().getWindow()).close();
-                sicap.openPrincipal("ViewPrincipal", "Associação de Pescadores de Acupe");
-            } else {
-                txtOla.setText("Acesso não autorizado!");
-                // sicap.openPrincipal("ViewPrincipal");
-            }
-        } catch (Exception ex) {
+        String login = txtUser.getText();
+        String senha = txtSenha.getText();
 
+        f = validarAcessoFunc(login, senha);
+        if (f != null) {
+            ((Stage) btCancelar.getScene().getWindow()).close();
+            sicap.openPrincipal("ViewPrincipal", "Associação de Pescadores de Acupe");
+            setF(f);
+        }
+        adm = validarAcessoAdm(login, senha);
+        //  System.out.println("Adm: " + userAdm + " Func: " + userFunc);
+        if (adm != null) {
+            ((Stage) btCancelar.getScene().getWindow()).close();
+            sicap.openPrincipal("ViewPrincipal", "Associação de Pescadores de Acupe");
+        }
+
+        if (adm == null || f == null) {
+            txtOla.setText("Login ou senha invalidos!");
+            txtOla.setTextFill(Paint.valueOf("red"));
+            txtOla.setGraphic(iconFalha());
         }
 
     }

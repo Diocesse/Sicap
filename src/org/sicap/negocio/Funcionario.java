@@ -22,8 +22,10 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Funcionario.ConsultarTodos", query = "SELECT f FROM Funcionario f")
     ,
-    @NamedQuery(name = "Funcionario.AutenticaSistema", query = "SELECT f FROM Funcionario f WHERE f.user LIKE :user and f.senha LIKE :password"),
-     @NamedQuery(name = "Funcionario.consultarPorNome", query = "SELECT f FROM Funcionario f WHERE f.nome LIKE :name")
+    @NamedQuery(name = "Funcionario.AutenticaSistema", query = "SELECT f FROM Funcionario f WHERE f.user LIKE :login and f.senha LIKE :password"),
+     @NamedQuery(name = "Funcionario.consultarPorNome", query = "SELECT f FROM Funcionario f WHERE f.nome LIKE :name"),
+     @NamedQuery(name = "Funcionario.Login",query = "SELECT f FROM Funcionario f WHERE f.user LIKE :login"),
+     @NamedQuery(name = "Funcionario.Senha",query = "SELECT f FROM Funcionario f WHERE f.senha LIKE :password")
 
 })
 public class Funcionario extends Associado {
@@ -33,7 +35,7 @@ public class Funcionario extends Associado {
     private Cargo cargo;
     @Column(name = "usuario", nullable = false, unique = true)
     private String user;
-    @Column(name = "senha", nullable = false)
+    @Column(name = "senha", unique = true, nullable = false)
     private String senha;
 
     public String getUser() {

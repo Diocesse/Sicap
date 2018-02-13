@@ -62,6 +62,7 @@ public abstract class DaoGenerico<T, I extends Serializable> implements Dao<T, I
     @Override
     public EntityManager getEntityManager() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SICAP");
+        
         return emf.createEntityManager();
     }
 

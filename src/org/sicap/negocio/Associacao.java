@@ -29,7 +29,9 @@ import javax.persistence.Table;
 
 @NamedQueries({
     @NamedQuery(name = "Associacao.todasAssociacoes", query = "SELECT a FROM Associacao a"),
-    @NamedQuery(name = "Associacao.todasPorCNPJNome", query = "SELECT a FROM Associacao a WHERE a.associacao LIKE :filtro OR a.CNPJ LIKE :filtrarCNPJ"),})
+    @NamedQuery(name = "Associacao.todasPorCNPJNome", query = "SELECT a FROM Associacao a WHERE a.associacao LIKE :filtro OR a.CNPJ LIKE :filtrarCNPJ"),
+    @NamedQuery(name = "Associacao.consultaPorCnpj",query = "Select a From Associacao  a where a.CNPJ like :buscar")
+})
 public class Associacao implements Serializable {
 
     @Id
@@ -42,7 +44,7 @@ public class Associacao implements Serializable {
     private String endereco;
     @Column(name = "ordem_Utilidade", nullable = false)
     private String ordemUtilidade;
-    @Column(name = "CNPJ", nullable = false)
+    @Column(name = "CNPJ",unique = true, nullable = false)
     private String CNPJ;
     @Column(name = "logo_Marca")
     private byte[] logo;

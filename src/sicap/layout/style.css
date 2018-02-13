@@ -6,21 +6,21 @@
 
 }.pane-menu-float{
     -fx-background-color: linear-gradient(to right, rgb(125, 68, 144), rgb(159, 72, 115));
-    -fx-text-fill: white;
+
 }
 
 .pane-menu{
     -fx-background-color: linear-gradient(to right, rgb(125, 68, 144), rgb(238, 132, 180), rgb(159, 72, 115));
-    -fx-background-radius:50;
+    -fx-background-radius:10;
     -fx-alignment: CENTER;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-effect: dropshadow( three-pass-box , #ff33ff , 15, 0.0 , 0 , 3 );
 
 }
 .text-field-login{
     -fx-focus-color: pink;
-    -fx-background-radius: 15 15 15 15;
-    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-radius: 10 10 10 10;
 }
 .btn-cancel-menu{
     -fx-background-color: linear-gradient(to right, rgb(100, 68, 200), rgb(130, 72, 115));
@@ -28,24 +28,19 @@
     -fx-text-fill: aquamarine;
     -fx-alignment: CENTER;
 }
-.label{
+.mensage{
+
     -fx-text-fill: black;
 
-
-
-}.mensage{
-    
-    -fx-text-fill: white;
-    
 
 }.border{
 
-    -fx-background-color: aliceblue;
+    -fx-background-color: windowframe;
     -fx-background-radius:4;
     -fx-text-fill: black;
-    -fx-font-size: 12pt;
+    -fx-font-size: 11pt;
     -fx-text-alignment: center;
-    -fx-base: rgb(122, 145, 47);
+    
 
 
 }.tem{
@@ -57,10 +52,36 @@
     -fx-border-color: blueviolet;
     -fx-border-radius:2pt;
 }.fonte{
-    
+
     -fx-font-size:13pt;
     -fx-font:monospace; 
     -fx-text-alignment: right;
 }.grad-repeat{
-   -fx-background-color: radial-gradient(focus-angle 45deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, grey, #a9a9a9 75% , #696969);
+    -fx-background-color: radial-gradient(focus-angle 25deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, gainsboro, whitesmoke 75% , gainsboro);
+    -fx-underline: false;
+    
+
+}.table{
+
+    -fx-background-color: radial-gradient(focus-angle 45deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, lightgray , black 75% , yellow);
+
+}.MSG{
+
+    -fx-background-color: radial-gradient(focus-angle 45deg , focus-distance 20% , center 25% 25% , radius 50% , reflect, coral, gainsboro 75% , white);
+
+}.textoMsg{
+   
+    -fx-font-family: "monospace";
+    -fx-font-size: 10pt;
+}.sucesso{
+    -fx-background-color: green;
+    -fx-font-family: "monospace";
+    -fx-font-size: 10pt;
+}.colocar-borda{
+    -fx-border-color: linear-gradient(to right, rgb(10, 68, 18), rgb(7, 72, 2));
+
+}.link{
+    -fx-underline: false;
+    -fx-text-fill: blue;
+    -fx-font-size: 11pt;
 }
